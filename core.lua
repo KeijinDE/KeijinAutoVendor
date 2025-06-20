@@ -25,13 +25,13 @@ frame:SetScript("OnEvent", function()
     -- Reparatur zuerst
     KAV_HandleRepair()
 
-    -- Verkauf leicht verzögert (Workaround für Turtle UI Race Condition)
+    -- Verkauf leicht verzögert (Vanilla-kompatibel über arg1)
     local delayFrame = CreateFrame("Frame")
     local elapsedTime = 0
-    delayFrame:SetScript("OnUpdate", function(self, elapsed)
-      elapsedTime = elapsedTime + elapsed
+    delayFrame:SetScript("OnUpdate", function()
+      elapsedTime = elapsedTime + arg1
       if elapsedTime >= 0.1 then
-        self:SetScript("OnUpdate", nil)
+        delayFrame:SetScript("OnUpdate", nil)
         KAV_HandleGrayItems()
       end
     end)
