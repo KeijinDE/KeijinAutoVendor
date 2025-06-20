@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: KeijinAutoVendor
+## Notes: Automatically sells gray items and repairs gear
+## Version: 0.1.0
+core.lua
+auto_vendor_sell.lua
+auto_vendor_repair.lua

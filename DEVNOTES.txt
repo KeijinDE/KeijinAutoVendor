@@ -1,0 +1,40 @@
+# KeijinAutoVendor – Dev Notes
+
+## Core structure (EN)
+
+- core.lua – Entry and command handling
+- auto_vendor_sell.lua – Based on GrayAutoSell logic (deferred OnUpdate item queue)
+- auto_vendor_repair.lua – Standalone repair handler
+
+## Technical insights:
+
+1. Direct for-loop selling (UseContainerItem) fails in Turtle WoW due to early bag data unavailability.
+2. Item rarity must be determined via itemLink + GetItemInfo(itemID), NOT GetContainerItemInfo.
+3. Selling must be handled with a timed OnUpdate runner (0.2s delay).
+
+## Credit:
+GrayAutoSell v0.1.4  
+by Thomas T. Cremers  
+https://github.com/ttcremers/GrayAutoSell  
+Licensed under GNU GPL v2 or later
+
+---
+
+## Struktur (DE)
+
+- core.lua – Einstieg, Slash-Befehle
+- auto_vendor_sell.lua – Verkauf via Frame-Timer (GrayAutoSell-Prinzip)
+- auto_vendor_repair.lua – Reparatur bei Händlerkontakt
+
+## Technische Erkenntnisse:
+
+1. Direktverkauf über Schleifen (UseContainerItem) funktioniert auf Turtle nicht zuverlässig – Bagdaten sind nicht rechtzeitig geladen.
+2. Qualität (rarity) muss über GetItemInfo(itemID) abgefragt werden – nicht über ContainerSlot.
+3. Verkauf funktioniert nur über eine Poolverarbeitung mit OnUpdate-Frame + Delay.
+
+## Hinweis:
+Der Verkaufsmechanismus basiert vollständig auf:
+GrayAutoSell v0.1.4  
+von Thomas T. Cremers  
+Lizenz: GNU GPL v2 oder später  
+https://github.com/ttcremers/GrayAutoSell

@@ -1,0 +1,33 @@
+GNU GENERAL PUBLIC LICENSE
+Version 2, June 1991
+
+Copyright (C) 1989, 1991 Free Software Foundation, Inc.
+51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+
+Everyone is permitted to copy and distribute verbatim copies
+of this license document, but changing it is not allowed.
+
+[... gekürzt zur Übersicht ...]
+
+TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION
+
+0. This License applies to any program or other work which contains a notice placed by the copyright
+holder saying it may be distributed under the terms of this General Public License. The "Program", below,
+refers to any such program or work...
+
+[... vollständiger Text siehe unten ...]
+
+KeijinAutoVendor incorporates portions of GrayAutoSell v0.1.4,
+Copyright (C) Thomas T. Cremers
+https://github.com/ttcremers/GrayAutoSell
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+See the full license text for details.
