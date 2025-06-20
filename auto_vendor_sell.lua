@@ -1,6 +1,3 @@
-
--- GrayAutoSell logic (adapted to KeijinAutoVendor)
-KAV_DEBUG = false
 local SELL = true
 local grayItemPool = {}
 local poolRunnerFrame = CreateFrame("Frame")
@@ -13,18 +10,15 @@ local function debug(text)
 end
 
 local function poolRunner()
-  debug("Pool runner started at: " .. GetTime())
   local endTime = GetTime() + sellDelay
-
   poolRunnerFrame:SetScript("OnUpdate", function()
-    if (endTime < GetTime()) then
+    if GetTime() >= endTime then
       local e = table.remove(grayItemPool)
       if e then
-        debug("Processing Bag: " .. e.bag .. " Slot: " .. e.slot)
         if SELL then
           UseContainerItem(e.bag, e.slot)
         else
-          debug("NOT SOLD, SELL=false")
+          debug("Skipping sell (SELL = false)")
         end
       else
         poolRunnerFrame:SetScript("OnUpdate", nil)
@@ -37,19 +31,20 @@ end
 function KAV_HandleGrayItems()
   for bag = 0, NUM_BAG_SLOTS do
     for slot = 1, GetContainerNumSlots(bag) do
-      local itemLink = GetContainerItemLink(bag, slot)
-      if itemLink then
-        local _, _, itemID = string.find(itemLink, "item:(%d+):")
-        if itemID then
-          local name, _, rarity = GetItemInfo(tonumber(itemID))
-          if rarity == 0 then
-            debug("Queued gray item: " .. name)
-            table.insert(grayItemPool, {bag = bag, slot = slot})
-          end
+      local link = GetContainerItemLink(bag, slot)
+      if link then
+        local _, _, itemID = string.find(link, "item:(%d+):")
+        local name, _, rarity = GetItemInfo(itemID)
+        if rarity == 0 then
+          debug("Queued gray item: " .. name)
+          table.insert(grayItemPool, { bag = bag, slot = slot })
         end
       end
     end
   end
-  debug("Gray items found: " .. table.getn(grayItemPool))
-  poolRunner()
+
+  if table.getn(grayItemPool) > 0 then
+    debug("Gray items found: " .. table.getn(grayItemPool))
+    poolRunner()
+  end
 end
