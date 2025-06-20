@@ -1,5 +1,3 @@
--- Repair logic for Turtle WoW (Classic 1.12)
-
 local function KAV_FormatCopper(copper)
   local gold = math.floor(copper / (100 * 100))
   local silver = math.floor((copper - (gold * 100 * 100)) / 100)
