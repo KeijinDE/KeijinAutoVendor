@@ -1,5 +1,7 @@
-SLASH_KAV1 = "/kav"
+-- Startup message
+DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r |cffffff88KeijinAutoVendor|r v0.1.1 – Use /kav")
 
+SLASH_KAV1 = "/kav"
 KAV_DEBUG = false
 
 SlashCmdList["KAV"] = function(msg)
@@ -9,7 +11,7 @@ SlashCmdList["KAV"] = function(msg)
     local state = KAV_DEBUG and "enabled" or "disabled"
     DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r Debug mode " .. state .. ".")
   else
-    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r KeijinAutoVendor v0.1.0 – Use /kav debug")
+    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r KeijinAutoVendor v0.1.1 – Use /kav debug")
   end
 end
 
@@ -22,15 +24,15 @@ frame:SetScript("OnEvent", function()
       DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r [Debug] MERCHANT_SHOW triggered.")
     end
 
-    -- Reparatur zuerst
+    -- Sofort reparieren
     KAV_HandleRepair()
 
-    -- Verkauf leicht verzögert (Vanilla-kompatibel über arg1)
+    -- Verkauf verzögert (wegen ItemCache)
     local delayFrame = CreateFrame("Frame")
     local elapsedTime = 0
     delayFrame:SetScript("OnUpdate", function()
       elapsedTime = elapsedTime + arg1
-      if elapsedTime >= 0.1 then
+      if elapsedTime >= 0.2 then
         delayFrame:SetScript("OnUpdate", nil)
         KAV_HandleGrayItems()
       end
