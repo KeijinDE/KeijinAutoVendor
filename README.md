@@ -1,6 +1,6 @@
 # KeijinAutoVendor
 
-**Version:** v0.1.1  
+**Version:** v0.1.3
 **Author:** Keijin (Sascha)  
 **Platform:** Turtle WoW (Classic 1.12)
 
