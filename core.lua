@@ -1,4 +1,4 @@
--- Startup message
+-- Startup message 
 DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r |cffffff88KeijinAutoVendor|r v0.1.3 – Use /kav")
 
 SLASH_KAV1 = "/kav"
