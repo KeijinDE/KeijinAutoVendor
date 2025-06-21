@@ -1,4 +1,4 @@
--- auto_vendor_repair.lua
+-- auto_vendor_repair.lua 
 
 local function Print(msg)
   DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r " .. msg)
