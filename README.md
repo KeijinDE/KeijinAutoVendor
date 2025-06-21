@@ -6,7 +6,7 @@
 
 ---
 
-## 📌 Description (EN)
+## 📌 Description (EN) 
 KeijinAutoVendor is a lightweight addon that automatically sells poor quality (gray) items and repairs your gear when visiting a vendor.
 
 - Modular design: clean separation between sell and repair logic
