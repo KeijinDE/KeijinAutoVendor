@@ -1,21 +1,17 @@
--- auto_vendor_repair.lua 
+-- auto_vendor_repair.lua
 
 local function Print(msg)
-  DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r " .. msg)
+  DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAutoVendor]|r " .. msg)
 end
 
 local function Debug(msg)
-  if KAV_DebugMode then
-    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons][Debug]|r " .. msg)
+  if KAV_DEBUG then
+    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAutoVendor][Debug]|r " .. msg)
   end
 end
 
 local function SafeCoinString(amount)
-  if type(GetCoinTextureString) == "function" then
-    return GetCoinTextureString(amount)
-  else
-    return tostring(amount) .. " copper"
-  end
+  return tostring(amount) .. " copper"
 end
 
 function KAV_HandleRepair()
@@ -32,8 +28,8 @@ function KAV_HandleRepair()
 
   if canRepair and repairCost > 0 then
     RepairAllItems()
-    Debug("Repaired gear for " .. SafeCoinString(repairCost))
+    Print("Repaired gear for " .. SafeCoinString(repairCost))
   elseif canRepair then
-    Debug("Nothing to repair.")
+    Print("No repairs needed.")
   end
 end
