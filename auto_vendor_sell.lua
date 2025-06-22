@@ -1,12 +1,19 @@
+-- auto_vendor_sell.lua
+
 local SELL = true
 local grayItemPool = {}
 local poolRunnerFrame = CreateFrame("Frame")
 local sellDelay = 0.2
+local soldItemCount = 0
 
 local function debug(text)
   if KAV_DEBUG then
-    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r [Debug] " .. text)
+    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAutoVendor]|r [Debug] " .. text)
   end
+end
+
+local function print(text)
+  DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAutoVendor]|r " .. text)
 end
 
 local function poolRunner()
@@ -17,11 +24,17 @@ local function poolRunner()
       if e then
         if SELL then
           UseContainerItem(e.bag, e.slot)
+          soldItemCount = soldItemCount + 1
         else
           debug("Skipping sell (SELL = false)")
         end
       else
         poolRunnerFrame:SetScript("OnUpdate", nil)
+        if soldItemCount > 0 then
+          print("Sold " .. tostring(soldItemCount) .. " gray item(s).")
+        else
+          print("No gray items to sell.")
+        end
         debug("Pool runner finished at: " .. GetTime())
       end
     end
@@ -29,6 +42,7 @@ local function poolRunner()
 end
 
 function KAV_HandleGrayItems()
+  soldItemCount = 0
   for bag = 0, NUM_BAG_SLOTS do
     for slot = 1, GetContainerNumSlots(bag) do
       local link = GetContainerItemLink(bag, slot)
@@ -46,6 +60,7 @@ function KAV_HandleGrayItems()
   if table.getn(grayItemPool) > 0 then
     debug("Gray items found: " .. table.getn(grayItemPool))
     poolRunner()
+  else
+    print("No gray items to sell.")
   end
 end
- 
