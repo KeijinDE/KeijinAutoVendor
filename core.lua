@@ -1,5 +1,5 @@
 -- Startup message 
-DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r |cffffff88KeijinAutoVendor|r v0.1.3 – Use /kav")
+DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r |cffffff88KeijinAutoVendor|r v0.1.5 – Use /kav")
 
 SLASH_KAV1 = "/kav"
 KAV_DEBUG = false
@@ -11,7 +11,7 @@ SlashCmdList["KAV"] = function(msg)
     local state = KAV_DEBUG and "enabled" or "disabled"
     DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r Debug mode " .. state .. ".")
   else
-    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r KeijinAutoVendor v0.1.3 – Use /kav debug")
+    DEFAULT_CHAT_FRAME:AddMessage("|cff88ff88[KeijinAddons]|r KeijinAutoVendor v0.1.5 – Use /kav debug")
   end
 end
 
